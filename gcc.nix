@@ -4,7 +4,7 @@ let
   target = "i686-elf";
   path = "";
 in 
-pkgs.stdenv.mkDerivation rec {
+pkgs.stdenvNoCC.mkDerivation rec {
   name = "gcc-osdevwiki";
   src = pkgs.fetchzip {
     url = "https://ftp.gnu.org/gnu/gcc/gcc-13.2.0/gcc-13.2.0.tar.gz";
@@ -21,6 +21,7 @@ pkgs.stdenv.mkDerivation rec {
   
   nativeBuildInputs = [
     pkgs.libgcc
+    pkgs.gcc
     pkgs.gnumake
     pkgs.bison
     pkgs.flex
@@ -29,6 +30,7 @@ pkgs.stdenv.mkDerivation rec {
     pkgs.mpfr
     pkgs.texinfo
     pkgs.isl
+    pkgs.perl
     (import ./binutils.nix)
   ];
 

@@ -4,7 +4,7 @@ let
   target = "i686-elf";
   path = "";
 in 
-pkgs.stdenv.mkDerivation rec {
+pkgs.stdenvNoCC.mkDerivation rec {
   name = "binutils-osdevwiki";
   src = pkgs.fetchzip {
     url = "https://ftp.gnu.org/gnu/binutils/binutils-2.41.tar.xz";
@@ -27,6 +27,7 @@ pkgs.stdenv.mkDerivation rec {
   
   nativeBuildInputs = [
     pkgs.libgcc
+    pkgs.gcc
     pkgs.gnumake
     pkgs.bison
     pkgs.flex
@@ -35,6 +36,7 @@ pkgs.stdenv.mkDerivation rec {
     pkgs.mpfr
     pkgs.texinfo
     pkgs.isl
+    pkgs.perl
   ];
   
   checkPhase = ''
